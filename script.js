@@ -1,8 +1,3 @@
-(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
-diff --git a/FitDaily-Complete-Package/script.js b/FitDaily-Complete-Package/script.js
---- a/FitDaily-Complete-Package/script.js
-+++ b/FitDaily-Complete-Package/script.js
-@@ -0,0 +1,582 @@
 +// Workout Data
 +const workoutData = {
 +    push: {
