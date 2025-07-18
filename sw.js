@@ -1,8 +1,3 @@
-(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
-diff --git a/FitDaily-Complete-Package/sw.js b/FitDaily-Complete-Package/sw.js
---- a/FitDaily-Complete-Package/sw.js
-+++ b/FitDaily-Complete-Package/sw.js
-@@ -0,0 +1,105 @@
 +const CACHE_NAME = 'fitdaily-v1';
 +const urlsToCache = [
 +  '/',
