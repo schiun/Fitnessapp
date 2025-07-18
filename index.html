@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitDaily - Your 45-Minute Fitness Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-dumbbell"></i> FitDaily</h1>
+                <p>Your 45-Minute Daily Fitness Companion</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="workout-selection">
+                <h2>Today's Workout</h2>
+                <div class="workout-types">
+                    <div class="workout-card" data-type="push">
+                        <div class="workout-icon">
+                            <i class="fas fa-fist-raised"></i>
+                        </div>
+                        <h3>Push Day</h3>
+                        <p>Chest, Shoulders, Triceps</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-fire"></i> ~300 cal</span>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-type="pull">
+                        <div class="workout-icon">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                        <h3>Pull Day</h3>
+                        <p>Back, Biceps, Rear Delts</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-fire"></i> ~280 cal</span>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-type="legs">
+                        <div class="workout-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>Leg Day</h3>
+                        <p>Quads, Glutes, Hamstrings, Calves</p>
+                        <div class="workout-stats">
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-fire"></i> ~350 cal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="daily-recommendation">
+                    <h3><i class="fas fa-lightbulb"></i> Today's Recommendation</h3>
+                    <div id="daily-workout" class="recommended-workout">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="workout-details" id="workout-details" style="display: none;">
+                <div class="workout-header">
+                    <button class="back-btn" id="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <h2 id="workout-title"></h2>
+                    <div class="workout-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">0 / 0</span>
+                    </div>
+                </div>
+
+                <div class="timer-section">
+                    <div class="timer-display">
+                        <div class="timer-circle">
+                            <div class="timer-text">
+                                <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" id="start-pause-btn">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button class="timer-btn secondary" id="reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="exercises-list" id="exercises-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <div class="workout-actions">
+                    <button class="action-btn complete" id="complete-workout">
+                        <i class="fas fa-check"></i> Complete Workout
+                    </button>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h2>Your Progress</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="workouts-completed">0</h3>
+                            <p>Workouts Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-fire-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="calories-burned">0</h3>
+                            <p>Total Calories</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-time">0</h3>
+                            <p>Total Minutes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-streak"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="current-streak">0</h3>
+                            <p>Day Streak</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
