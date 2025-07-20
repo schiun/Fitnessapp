@@ -1,60 +1,58 @@
-+{
-+  "name": "FitDaily - 45-Minute Fitness Companion",
-+  "short_name": "FitDaily",
-+  "description": "Your daily 45-minute fitness companion with Push, Pull, and Leg workouts",
-+  "start_url": "/",
-+  "display": "standalone",
-+  "background_color": "#667eea",
-+  "theme_color": "#667eea",
-+  "orientation": "portrait",
-+  "scope": "/",
-+  "icons": [
-+    {
-+      "src": "icon-192.png",
-+      "sizes": "192x192",
-+      "type": "image/png",
-+      "purpose": "maskable any"
-+    },
-+    {
-+      "src": "icon-512.png",
-+      "sizes": "512x512",
-+      "type": "image/png",
-+      "purpose": "maskable any"
-+    }
-+  ],
-+  "categories": ["health", "fitness", "lifestyle"],
-+  "lang": "en",
-+  "shortcuts": [
-+    {
-+      "name": "Push Workout",
-+      "short_name": "Push",
-+      "description": "Start Push Day workout",
-+      "url": "/?workout=push",
-+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
-+    },
-+    {
-+      "name": "Pull Workout", 
-+      "short_name": "Pull",
-+      "description": "Start Pull Day workout",
-+      "url": "/?workout=pull",
-+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
-+    },
-+    {
-+      "name": "Leg Workout",
-+      "short_name": "Legs", 
-+      "description": "Start Leg Day workout",
-+      "url": "/?workout=legs",
-+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
-+    }
-+  ],
-+  "screenshots": [
-+    {
-+      "src": "screenshot1.png",
-+      "sizes": "540x720",
-+      "type": "image/png",
-+      "form_factor": "narrow"
-+    }
-+  ]
-+}
-EOF
-)
+{
+  "name": "SGX Stock Analyzer - EMA & Bollinger Band Scanner",
+  "short_name": "SGX Analyzer",
+  "description": "Singapore Stock Exchange analyzer with EMA crossover and Bollinger band technical analysis",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["finance", "productivity", "business"],
+  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Add Stock",
+      "short_name": "Add",
+      "description": "Add a new stock for analysis",
+      "url": "/?action=add",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Scan Popular", 
+      "short_name": "Scan",
+      "description": "Scan popular SGX stocks",
+      "url": "/?action=scan",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Refresh All",
+      "short_name": "Refresh", 
+      "description": "Refresh all stock data",
+      "url": "/?action=refresh",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

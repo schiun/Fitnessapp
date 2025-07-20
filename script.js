@@ -1,584 +1,642 @@
-+// Workout Data
-+const workoutData = {
-+    push: {
-+        name: "Push Day",
-+        description: "Focus on pushing movements targeting chest, shoulders, and triceps",
-+        duration: 45,
-+        calories: 300,
-+        exercises: [
-+            {
-+                name: "Push-ups",
-+                sets: 3,
-+                reps: "12-15",
-+                duration: 90,
-+                description: "Start in plank position, lower chest to ground, push back up. Keep core tight and body straight."
-+            },
-+            {
-+                name: "Pike Push-ups",
-+                sets: 3,
-+                reps: "8-12",
-+                duration: 90,
-+                description: "In downward dog position, lower head towards hands, push back up. Great for shoulders."
-+            },
-+            {
-+                name: "Tricep Dips",
-+                sets: 3,
-+                reps: "10-15",
-+                duration: 90,
-+                description: "Using chair or bench, lower body by bending elbows, push back up. Focus on triceps."
-+            },
-+            {
-+                name: "Diamond Push-ups",
-+                sets: 2,
-+                reps: "6-10",
-+                duration: 60,
-+                description: "Hands in diamond shape, perform push-ups. Targets triceps more than regular push-ups."
-+            },
-+            {
-+                name: "Wall Handstand Push-ups",
-+                sets: 2,
-+                reps: "5-8",
-+                duration: 60,
-+                description: "Against wall, lower head towards ground, push back up. Advanced shoulder exercise."
-+            },
-+            {
-+                name: "Chest Squeeze",
-+                sets: 3,
-+                reps: "15-20",
-+                duration: 60,
-+                description: "Press palms together at chest level, hold for 2 seconds each rep. Isometric chest exercise."
-+            },
-+            {
-+                name: "Plank to Push-up",
-+                sets: 2,
-+                reps: "8-12",
-+                duration: 90,
-+                description: "Start in plank, move to push-up position, perform push-up, return to plank."
-+            }
-+        ]
-+    },
-+    pull: {
-+        name: "Pull Day",
-+        description: "Focus on pulling movements targeting back, biceps, and rear delts",
-+        duration: 45,
-+        calories: 280,
-+        exercises: [
-+            {
-+                name: "Pull-ups/Chin-ups",
-+                sets: 3,
-+                reps: "5-10",
-+                duration: 120,
-+                description: "Hang from bar, pull body up until chin over bar. Use assistance band if needed."
-+            },
-+            {
-+                name: "Inverted Rows",
-+                sets: 3,
-+                reps: "10-15",
-+                duration: 90,
-+                description: "Under table/bar, pull chest to bar while body straight. Great back exercise."
-+            },
-+            {
-+                name: "Superman",
-+                sets: 3,
-+                reps: "12-15",
-+                duration: 60,
-+                description: "Lie face down, lift chest and legs off ground simultaneously. Hold for 2 seconds."
-+            },
-+            {
-+                name: "Reverse Fly",
-+                sets: 3,
-+                reps: "12-15",
-+                duration: 60,
-+                description: "Bend forward, arms out to sides, squeeze shoulder blades together. Use water bottles if needed."
-+            },
-+            {
-+                name: "Pike Walks",
-+                sets: 3,
-+                reps: "8-10",
-+                duration: 90,
-+                description: "In push-up position, walk feet towards hands, then walk hands forward to return."
-+            },
-+            {
-+                name: "Wall Angels",
-+                sets: 3,
-+                reps: "15-20",
-+                duration: 60,
-+                description: "Back against wall, move arms up and down like making snow angels. Focus on rear delts."
-+            },
-+            {
-+                name: "Dead Hang",
-+                sets: 3,
-+                reps: "15-30s",
-+                duration: 90,
-+                description: "Hang from bar with straight arms. Build grip strength and stretch shoulders."
-+            }
-+        ]
-+    },
-+    legs: {
-+        name: "Leg Day",
-+        description: "Focus on lower body targeting quads, glutes, hamstrings, and calves",
-+        duration: 45,
-+        calories: 350,
-+        exercises: [
-+            {
-+                name: "Bodyweight Squats",
-+                sets: 3,
-+                reps: "15-20",
-+                duration: 90,
-+                description: "Feet shoulder-width apart, lower hips back and down, keep knees behind toes."
-+            },
-+            {
-+                name: "Lunges",
-+                sets: 3,
-+                reps: "10-12 each leg",
-+                duration: 120,
-+                description: "Step forward, lower back knee towards ground, push back to start. Alternate legs."
-+            },
-+            {
-+                name: "Single-leg Glute Bridges",
-+                sets: 3,
-+                reps: "10-12 each leg",
-+                duration: 90,
-+                description: "Lie on back, one foot on ground, lift hips up squeezing glutes. Switch legs."
-+            },
-+            {
-+                name: "Calf Raises",
-+                sets: 3,
-+                reps: "15-20",
-+                duration: 60,
-+                description: "Rise up on toes, hold briefly, lower slowly. Can do single-leg for more difficulty."
-+            },
-+            {
-+                name: "Wall Sit",
-+                sets: 3,
-+                reps: "30-45s",
-+                duration: 90,
-+                description: "Back against wall, slide down to sitting position, hold. Thighs parallel to ground."
-+            },
-+            {
-+                name: "Jump Squats",
-+                sets: 3,
-+                reps: "10-15",
-+                duration: 90,
-+                description: "Perform squat, then jump up explosively, land softly and repeat. High intensity."
-+            },
-+            {
-+                name: "Bulgarian Split Squats",
-+                sets: 2,
-+                reps: "8-10 each leg",
-+                duration: 120,
-+                description: "Back foot elevated, lower into lunge position, push back up. Advanced exercise."
-+            },
-+            {
-+                name: "Single-leg Calf Raises",
-+                sets: 2,
-+                reps: "10-12 each leg",
-+                duration: 60,
-+                description: "Rise up on one toe, hold briefly, lower slowly. Switch legs."
-+            }
-+        ]
-+    }
-+};
-+
-+// App State
-+let currentWorkout = null;
-+let currentExerciseIndex = 0;
-+let completedExercises = [];
-+let timer = {
-+    minutes: 0,
-+    seconds: 0,
-+    isRunning: false,
-+    interval: null
-+};
-+
-+// DOM Elements
-+const workoutCards = document.querySelectorAll('.workout-card');
-+const workoutDetails = document.getElementById('workout-details');
-+const workoutSelection = document.querySelector('.workout-selection');
-+const backBtn = document.getElementById('back-btn');
-+const workoutTitle = document.getElementById('workout-title');
-+const exercisesList = document.getElementById('exercises-list');
-+const progressFill = document.getElementById('progress-fill');
-+const progressText = document.getElementById('progress-text');
-+const timerMinutes = document.getElementById('timer-minutes');
-+const timerSeconds = document.getElementById('timer-seconds');
-+const startPauseBtn = document.getElementById('start-pause-btn');
-+const resetBtn = document.getElementById('reset-btn');
-+const completeWorkoutBtn = document.getElementById('complete-workout');
-+const dailyWorkout = document.getElementById('daily-workout');
-+
-+// Stats Elements
-+const workoutsCompletedEl = document.getElementById('workouts-completed');
-+const caloriesBurnedEl = document.getElementById('calories-burned');
-+const totalTimeEl = document.getElementById('total-time');
-+const currentStreakEl = document.getElementById('current-streak');
-+
-+// Initialize App
-+document.addEventListener('DOMContentLoaded', function() {
-+    loadStats();
-+    setDailyRecommendation();
-+    setupEventListeners();
-+    registerServiceWorker();
-+    
-+    // Handle URL parameters for shortcuts
-+    const urlParams = new URLSearchParams(window.location.search);
-+    const workout = urlParams.get('workout');
-+    if (workout && workoutData[workout]) {
-+        startWorkout(workout);
-+    }
-+});
-+
-+// Register Service Worker for PWA functionality
-+function registerServiceWorker() {
-+    if ('serviceWorker' in navigator) {
-+        window.addEventListener('load', function() {
-+            navigator.serviceWorker.register('/sw.js')
-+                .then(function(registration) {
-+                    console.log('SW registered: ', registration);
-+                })
-+                .catch(function(registrationError) {
-+                    console.log('SW registration failed: ', registrationError);
-+                });
-+        });
-+    }
-+}
-+
-+// Event Listeners
-+function setupEventListeners() {
-+    // Workout card clicks
-+    workoutCards.forEach(card => {
-+        card.addEventListener('click', () => {
-+            const workoutType = card.dataset.type;
-+            startWorkout(workoutType);
-+        });
-+    });
-+
-+    // Back button
-+    backBtn.addEventListener('click', () => {
-+        showWorkoutSelection();
-+    });
-+
-+    // Timer controls
-+    startPauseBtn.addEventListener('click', toggleTimer);
-+    resetBtn.addEventListener('click', resetTimer);
-+
-+    // Complete workout
-+    completeWorkoutBtn.addEventListener('click', completeWorkout);
-+}
-+
-+// Set Daily Recommendation
-+function setDailyRecommendation() {
-+    const today = new Date();
-+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-+    
-+    let recommendedType;
-+    let message;
-+    
-+    switch (dayOfWeek % 3) {
-+        case 0:
-+            recommendedType = 'push';
-+            message = 'Today is perfect for building upper body strength! Focus on your chest, shoulders, and triceps with our push workout.';
-+            break;
-+        case 1:
-+            recommendedType = 'pull';
-+            message = 'Time to work that back and biceps! Our pull workout will help you build a strong, balanced physique.';
-+            break;
-+        case 2:
-+            recommendedType = 'legs';
-+            message = 'Never skip leg day! Strengthen your foundation with our comprehensive lower body workout.';
-+            break;
-+    }
-+    
-+    const workout = workoutData[recommendedType];
-+    dailyWorkout.innerHTML = `
-+        <div class="recommended-workout-content">
-+            <h4>${workout.name}</h4>
-+            <p>${message}</p>
-+            <div class="workout-stats">
-+                <span><i class="fas fa-clock"></i> ${workout.duration} minutes</span>
-+                <span><i class="fas fa-fire"></i> ~${workout.calories} calories</span>
-+                <span><i class="fas fa-dumbbell"></i> ${workout.exercises.length} exercises</span>
-+            </div>
-+            <button class="action-btn" onclick="startWorkout('${recommendedType}')" style="margin-top: 15px; padding: 12px 25px; font-size: 0.9rem;">
-+                <i class="fas fa-play"></i> Start Today's Workout
-+            </button>
-+        </div>
-+    `;
-+}
-+
-+// Start Workout
-+function startWorkout(type) {
-+    currentWorkout = workoutData[type];
-+    currentExerciseIndex = 0;
-+    completedExercises = [];
-+    
-+    workoutTitle.textContent = currentWorkout.name;
-+    renderExercises();
-+    updateProgress();
-+    resetTimer();
-+    
-+    workoutSelection.style.display = 'none';
-+    workoutDetails.style.display = 'block';
-+    
-+    // Scroll to top
-+    workoutDetails.scrollIntoView({ behavior: 'smooth' });
-+}
-+
-+// Show Workout Selection
-+function showWorkoutSelection() {
-+    workoutSelection.style.display = 'block';
-+    workoutDetails.style.display = 'none';
-+    resetTimer();
-+}
-+
-+// Render Exercises
-+function renderExercises() {
-+    exercisesList.innerHTML = '';
-+    
-+    currentWorkout.exercises.forEach((exercise, index) => {
-+        const exerciseElement = document.createElement('div');
-+        exerciseElement.className = `exercise-item ${completedExercises.includes(index) ? 'completed' : ''}`;
-+        
-+        exerciseElement.innerHTML = `
-+            <div class="exercise-header">
-+                <h3 class="exercise-name">${exercise.name}</h3>
-+                <button class="exercise-complete-btn" onclick="completeExercise(${index})" 
-+                        ${completedExercises.includes(index) ? 'disabled' : ''}>
-+                    <i class="fas fa-check"></i> ${completedExercises.includes(index) ? 'Completed' : 'Complete'}
-+                </button>
-+            </div>
-+            <div class="exercise-details">
-+                <div class="exercise-stat">
-+                    <div class="exercise-stat-label">Sets</div>
-+                    <div class="exercise-stat-value">${exercise.sets}</div>
-+                </div>
-+                <div class="exercise-stat">
-+                    <div class="exercise-stat-label">Reps</div>
-+                    <div class="exercise-stat-value">${exercise.reps}</div>
-+                </div>
-+                <div class="exercise-stat">
-+                    <div class="exercise-stat-label">Duration</div>
-+                    <div class="exercise-stat-value">${exercise.duration}s</div>
-+                </div>
-+            </div>
-+            <div class="exercise-description">
-+                ${exercise.description}
-+            </div>
-+        `;
-+        
-+        exercisesList.appendChild(exerciseElement);
-+    });
-+}
-+
-+// Complete Exercise
-+function completeExercise(index) {
-+    if (!completedExercises.includes(index)) {
-+        completedExercises.push(index);
-+        renderExercises();
-+        updateProgress();
-+        
-+        // Auto-start timer if not running
-+        if (!timer.isRunning && completedExercises.length === 1) {
-+            toggleTimer();
-+        }
-+    }
-+}
-+
-+// Update Progress
-+function updateProgress() {
-+    const totalExercises = currentWorkout.exercises.length;
-+    const completed = completedExercises.length;
-+    const percentage = (completed / totalExercises) * 100;
-+    
-+    progressFill.style.width = `${percentage}%`;
-+    progressText.textContent = `${completed} / ${totalExercises}`;
-+}
-+
-+// Timer Functions
-+function toggleTimer() {
-+    if (timer.isRunning) {
-+        pauseTimer();
-+    } else {
-+        startTimer();
-+    }
-+}
-+
-+function startTimer() {
-+    timer.isRunning = true;
-+    startPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-+    
-+    timer.interval = setInterval(() => {
-+        timer.seconds++;
-+        if (timer.seconds >= 60) {
-+            timer.seconds = 0;
-+            timer.minutes++;
-+        }
-+        updateTimerDisplay();
-+    }, 1000);
-+}
-+
-+function pauseTimer() {
-+    timer.isRunning = false;
-+    startPauseBtn.innerHTML = '<i class="fas fa-play"></i> Resume';
-+    clearInterval(timer.interval);
-+}
-+
-+function resetTimer() {
-+    timer.isRunning = false;
-+    timer.minutes = 0;
-+    timer.seconds = 0;
-+    startPauseBtn.innerHTML = '<i class="fas fa-play"></i> Start';
-+    clearInterval(timer.interval);
-+    updateTimerDisplay();
-+}
-+
-+function updateTimerDisplay() {
-+    timerMinutes.textContent = timer.minutes.toString().padStart(2, '0');
-+    timerSeconds.textContent = timer.seconds.toString().padStart(2, '0');
-+}
-+
-+// Complete Workout
-+function completeWorkout() {
-+    if (completedExercises.length < currentWorkout.exercises.length) {
-+        if (!confirm('You haven\'t completed all exercises. Are you sure you want to finish?')) {
-+            return;
-+        }
-+    }
-+    
-+    pauseTimer();
-+    
-+    // Calculate stats
-+    const workoutTime = timer.minutes + (timer.seconds / 60);
-+    const caloriesEstimate = Math.round((completedExercises.length / currentWorkout.exercises.length) * currentWorkout.calories);
-+    
-+    // Update stats
-+    updateStats(workoutTime, caloriesEstimate);
-+    
-+    // Show completion message
-+    alert(`🎉 Workout Complete!\n\nTime: ${timer.minutes}:${timer.seconds.toString().padStart(2, '0')}\nExercises: ${completedExercises.length}/${currentWorkout.exercises.length}\nEstimated Calories: ${caloriesEstimate}\n\nGreat job! Keep up the consistency!`);
-+    
-+    // Return to main screen
-+    showWorkoutSelection();
-+}
-+
-+// Stats Functions
-+function loadStats() {
-+    const stats = JSON.parse(localStorage.getItem('fitDailyStats')) || {
-+        workoutsCompleted: 0,
-+        totalCalories: 0,
-+        totalMinutes: 0,
-+        currentStreak: 0,
-+        lastWorkoutDate: null
-+    };
-+    
-+    workoutsCompletedEl.textContent = stats.workoutsCompleted;
-+    caloriesBurnedEl.textContent = stats.totalCalories;
-+    totalTimeEl.textContent = Math.round(stats.totalMinutes);
-+    currentStreakEl.textContent = stats.currentStreak;
-+}
-+
-+function updateStats(minutes, calories) {
-+    let stats = JSON.parse(localStorage.getItem('fitDailyStats')) || {
-+        workoutsCompleted: 0,
-+        totalCalories: 0,
-+        totalMinutes: 0,
-+        currentStreak: 0,
-+        lastWorkoutDate: null
-+    };
-+    
-+    const today = new Date().toDateString();
-+    const lastWorkout = stats.lastWorkoutDate;
-+    
-+    // Update basic stats
-+    stats.workoutsCompleted++;
-+    stats.totalCalories += calories;
-+    stats.totalMinutes += minutes;
-+    
-+    // Update streak
-+    if (lastWorkout === today) {
-+        // Already worked out today, don't change streak
-+    } else if (lastWorkout) {
-+        const lastDate = new Date(lastWorkout);
-+        const todayDate = new Date();
-+        const timeDiff = todayDate.getTime() - lastDate.getTime();
-+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-+        
-+        if (daysDiff === 1) {
-+            // Consecutive day
-+            stats.currentStreak++;
-+        } else {
-+            // Streak broken
-+            stats.currentStreak = 1;
-+        }
-+    } else {
-+        // First workout
-+        stats.currentStreak = 1;
-+    }
-+    
-+    stats.lastWorkoutDate = today;
-+    
-+    localStorage.setItem('fitDailyStats', JSON.stringify(stats));
-+    loadStats();
-+}
-+
-+// Utility Functions
-+function formatTime(seconds) {
-+    const minutes = Math.floor(seconds / 60);
-+    const remainingSeconds = seconds % 60;
-+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-+}
-+
-+// Add some motivational features
-+function getMotivationalMessage() {
-+    const messages = [
-+        "Every rep counts! 💪",
-+        "You're stronger than yesterday! 🔥",
-+        "Consistency is key! 🗝️",
-+        "Your body can do it. It's your mind you need to convince! 🧠",
-+        "The only bad workout is the one that didn't happen! ✅",
-+        "Strong is the new beautiful! 💎",
-+        "Push yourself because no one else is going to do it for you! 🚀",
-+        "Your only limit is you! 🌟"
-+    ];
-+    
-+    return messages[Math.floor(Math.random() * messages.length)];
-+}
-+
-+// Add keyboard shortcuts
-+document.addEventListener('keydown', function(e) {
-+    // Space bar to start/pause timer
-+    if (e.code === 'Space' && workoutDetails.style.display !== 'none') {
-+        e.preventDefault();
-+        toggleTimer();
-+    }
-+    
-+    // Escape to go back
-+    if (e.code === 'Escape' && workoutDetails.style.display !== 'none') {
-+        showWorkoutSelection();
-+    }
-+});
-+
-+// Add notification support for rest periods
-+function startRestTimer(duration) {
-+    let restTime = duration;
-+    const restInterval = setInterval(() => {
-+        restTime--;
-+        if (restTime <= 0) {
-+            clearInterval(restInterval);
-+            // Show notification or alert
-+            if ('Notification' in window && Notification.permission === 'granted') {
-+                new Notification('Rest period over!', {
-+                    body: 'Time for your next set!',
-+                    icon: '/favicon.ico'
-+                });
-+            }
-+        }
-+    }, 1000);
-+}
-+
-+// Request notification permission on load
-+if ('Notification' in window && Notification.permission === 'default') {
-+    Notification.requestPermission();
-+}
-EOF
-)
+// Singapore Stock Exchange Analyzer - EMA & Bollinger Band Scanner
+// Mock data and calculations for demonstration purposes
+
+// Popular SGX stocks for demonstration
+const POPULAR_SGX_STOCKS = [
+    'D05.SI', // DBS Group Holdings
+    'U11.SI', // United Overseas Bank
+    'O39.SI', // Oversea-Chinese Banking Corp
+    'C6L.SI', // Singapore Airlines
+    'V03.SI', // Venture Corporation
+    'S68.SI', // Singapore Exchange
+    'C52.SI', // ComfortDelGro Corporation
+    'A17U.SI', // Ascendas REIT
+    'M44U.SI', // Mapletree Logistics Trust
+    'S63.SI'  // Singapore Technologies Engineering
+];
+
+// App State
+let stockData = new Map();
+let activeFilters = {
+    emaBullish: true,
+    emaBearish: false,
+    bbOversold: true,
+    bbOverbought: false,
+    bbSqueeze: true
+};
+
+let stockChart = null;
+
+// DOM Elements
+const stockSymbolInput = document.getElementById('stock-symbol');
+const addStockBtn = document.getElementById('add-stock-btn');
+const scanPopularBtn = document.getElementById('scan-popular-btn');
+const refreshAllBtn = document.getElementById('refresh-all-btn');
+const clearAllBtn = document.getElementById('clear-all-btn');
+const stockList = document.getElementById('stock-list');
+const loadingIndicator = document.getElementById('loading-indicator');
+const totalStocksEl = document.getElementById('total-stocks');
+const filteredStocksEl = document.getElementById('filtered-stocks');
+const stockModal = document.getElementById('stock-modal');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+
+// Filter checkboxes
+const emaBullishCb = document.getElementById('ema-bullish');
+const emaBearishCb = document.getElementById('ema-bearish');
+const bbOversoldCb = document.getElementById('bb-oversold');
+const bbOverboughtCb = document.getElementById('bb-overbought');
+const bbSqueezeCb = document.getElementById('bb-squeeze');
+
+// Initialize App
+document.addEventListener('DOMContentLoaded', function() {
+    setupEventListeners();
+    loadSavedStocks();
+    registerServiceWorker();
+});
+
+// Register Service Worker for PWA functionality
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+}
+
+// Event Listeners
+function setupEventListeners() {
+    addStockBtn.addEventListener('click', handleAddStock);
+    scanPopularBtn.addEventListener('click', handleScanPopular);
+    refreshAllBtn.addEventListener('click', handleRefreshAll);
+    clearAllBtn.addEventListener('click', handleClearAll);
+    modalCloseBtn.addEventListener('click', closeModal);
+    
+    stockSymbolInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            handleAddStock();
+        }
+    });
+
+    // Filter event listeners
+    emaBullishCb.addEventListener('change', updateFilters);
+    emaBearishCb.addEventListener('change', updateFilters);
+    bbOversoldCb.addEventListener('change', updateFilters);
+    bbOverboughtCb.addEventListener('change', updateFilters);
+    bbSqueezeCb.addEventListener('change', updateFilters);
+
+    // Modal close on background click
+    stockModal.addEventListener('click', function(e) {
+        if (e.target === stockModal) {
+            closeModal();
+        }
+    });
+}
+
+// Generate Mock Stock Data
+function generateMockStockData(symbol) {
+    // Generate 50 days of mock price data
+    const days = 50;
+    const basePrice = Math.random() * 50 + 10; // Base price between 10-60
+    const prices = [];
+    const volumes = [];
+    
+    let currentPrice = basePrice;
+    
+    for (let i = 0; i < days; i++) {
+        // Random walk with slight upward bias
+        const change = (Math.random() - 0.48) * 2; // Slight upward bias
+        currentPrice = Math.max(0.1, currentPrice + change);
+        prices.push(parseFloat(currentPrice.toFixed(2)));
+        
+        // Random volume between 100K and 2M
+        volumes.push(Math.floor(Math.random() * 1900000) + 100000);
+    }
+    
+    return {
+        symbol: symbol,
+        prices: prices,
+        volumes: volumes,
+        lastUpdated: new Date()
+    };
+}
+
+// Calculate EMA
+function calculateEMA(prices, period) {
+    const k = 2 / (period + 1);
+    const emas = [];
+    
+    // Start with SMA for first value
+    let sum = 0;
+    for (let i = 0; i < period; i++) {
+        sum += prices[i];
+    }
+    emas[period - 1] = sum / period;
+    
+    // Calculate EMA for remaining values
+    for (let i = period; i < prices.length; i++) {
+        emas[i] = prices[i] * k + emas[i - 1] * (1 - k);
+    }
+    
+    return emas;
+}
+
+// Calculate Bollinger Bands
+function calculateBollingerBands(prices, period = 20, stdDev = 2) {
+    const sma = [];
+    const upperBand = [];
+    const lowerBand = [];
+    
+    for (let i = period - 1; i < prices.length; i++) {
+        // Calculate SMA
+        const slice = prices.slice(i - period + 1, i + 1);
+        const mean = slice.reduce((a, b) => a + b, 0) / period;
+        sma[i] = mean;
+        
+        // Calculate standard deviation
+        const variance = slice.reduce((acc, price) => acc + Math.pow(price - mean, 2), 0) / period;
+        const std = Math.sqrt(variance);
+        
+        upperBand[i] = mean + (stdDev * std);
+        lowerBand[i] = mean - (stdDev * std);
+    }
+    
+    return { sma, upperBand, lowerBand };
+}
+
+// Analyze Stock
+function analyzeStock(data) {
+    const prices = data.prices;
+    const currentPrice = prices[prices.length - 1];
+    
+    // Calculate EMAs
+    const ema5 = calculateEMA(prices, 5);
+    const ema10 = calculateEMA(prices, 10);
+    
+    // Calculate Bollinger Bands
+    const bb = calculateBollingerBands(prices);
+    
+    const currentEma5 = ema5[ema5.length - 1];
+    const currentEma10 = ema10[ema10.length - 1];
+    const currentBBUpper = bb.upperBand[bb.upperBand.length - 1];
+    const currentBBLower = bb.lowerBand[bb.lowerBand.length - 1];
+    const currentBBMiddle = bb.sma[bb.sma.length - 1];
+    
+    // Determine signals
+    const signals = [];
+    
+    // EMA Crossover signals
+    if (currentEma5 > currentEma10) {
+        signals.push({ type: 'bullish', text: '5 EMA > 10 EMA' });
+    } else {
+        signals.push({ type: 'bearish', text: '5 EMA < 10 EMA' });
+    }
+    
+    // Bollinger Band signals
+    const bbPosition = (currentPrice - currentBBLower) / (currentBBUpper - currentBBLower);
+    
+    if (bbPosition < 0.2) {
+        signals.push({ type: 'bullish', text: 'Near Lower BB (Oversold)' });
+    } else if (bbPosition > 0.8) {
+        signals.push({ type: 'bearish', text: 'Near Upper BB (Overbought)' });
+    }
+    
+    // Band squeeze detection (when bands are narrow)
+    const bandWidth = (currentBBUpper - currentBBLower) / currentBBMiddle;
+    if (bandWidth < 0.1) {
+        signals.push({ type: 'neutral', text: 'Band Squeeze (Low Volatility)' });
+    }
+    
+    // Overall sentiment
+    const bullishSignals = signals.filter(s => s.type === 'bullish').length;
+    const bearishSignals = signals.filter(s => s.type === 'bearish').length;
+    
+    let sentiment = 'neutral';
+    if (bullishSignals > bearishSignals) {
+        sentiment = 'bullish';
+    } else if (bearishSignals > bullishSignals) {
+        sentiment = 'bearish';
+    }
+    
+    return {
+        currentPrice,
+        ema5: currentEma5,
+        ema10: currentEma10,
+        bbUpper: currentBBUpper,
+        bbLower: currentBBLower,
+        bbMiddle: currentBBMiddle,
+        volume: data.volumes[data.volumes.length - 1],
+        signals,
+        sentiment,
+        fullData: {
+            prices,
+            ema5,
+            ema10,
+            ...bb,
+            volumes: data.volumes
+        }
+    };
+}
+
+// Handle Add Stock
+async function handleAddStock() {
+    const symbol = stockSymbolInput.value.trim().toUpperCase();
+    if (!symbol) return;
+    
+    // Normalize SGX symbol format
+    const normalizedSymbol = symbol.includes('.SI') ? symbol : symbol + '.SI';
+    
+    if (stockData.has(normalizedSymbol)) {
+        alert('Stock already added!');
+        return;
+    }
+    
+    showLoading(true);
+    
+    try {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const data = generateMockStockData(normalizedSymbol);
+        const analysis = analyzeStock(data);
+        
+        stockData.set(normalizedSymbol, analysis);
+        stockSymbolInput.value = '';
+        
+        updateStockList();
+        saveStocks();
+        
+    } catch (error) {
+        console.error('Error adding stock:', error);
+        alert('Error adding stock. Please try again.');
+    } finally {
+        showLoading(false);
+    }
+}
+
+// Handle Scan Popular
+async function handleScanPopular() {
+    showLoading(true);
+    
+    try {
+        for (const symbol of POPULAR_SGX_STOCKS) {
+            if (!stockData.has(symbol)) {
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 200));
+                
+                const data = generateMockStockData(symbol);
+                const analysis = analyzeStock(data);
+                stockData.set(symbol, analysis);
+            }
+        }
+        
+        updateStockList();
+        saveStocks();
+        
+    } catch (error) {
+        console.error('Error scanning popular stocks:', error);
+        alert('Error scanning stocks. Please try again.');
+    } finally {
+        showLoading(false);
+    }
+}
+
+// Handle Refresh All
+async function handleRefreshAll() {
+    if (stockData.size === 0) {
+        alert('No stocks to refresh!');
+        return;
+    }
+    
+    showLoading(true);
+    
+    try {
+        const symbols = Array.from(stockData.keys());
+        
+        for (const symbol of symbols) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            const data = generateMockStockData(symbol);
+            const analysis = analyzeStock(data);
+            stockData.set(symbol, analysis);
+        }
+        
+        updateStockList();
+        saveStocks();
+        
+    } catch (error) {
+        console.error('Error refreshing stocks:', error);
+        alert('Error refreshing stocks. Please try again.');
+    } finally {
+        showLoading(false);
+    }
+}
+
+// Handle Clear All
+function handleClearAll() {
+    if (stockData.size === 0) return;
+    
+    if (confirm('Are you sure you want to clear all stocks?')) {
+        stockData.clear();
+        updateStockList();
+        saveStocks();
+    }
+}
+
+// Update Filters
+function updateFilters() {
+    activeFilters = {
+        emaBullish: emaBullishCb.checked,
+        emaBearish: emaBearishCb.checked,
+        bbOversold: bbOversoldCb.checked,
+        bbOverbought: bbOverboughtCb.checked,
+        bbSqueeze: bbSqueezeCb.checked
+    };
+    
+    updateStockList();
+}
+
+// Check if stock matches filters
+function matchesFilters(analysis) {
+    const { signals, sentiment } = analysis;
+    
+    // Check EMA filters
+    if (activeFilters.emaBullish && sentiment === 'bullish') return true;
+    if (activeFilters.emaBearish && sentiment === 'bearish') return true;
+    
+    // Check Bollinger Band filters
+    for (const signal of signals) {
+        if (activeFilters.bbOversold && signal.text.includes('Oversold')) return true;
+        if (activeFilters.bbOverbought && signal.text.includes('Overbought')) return true;
+        if (activeFilters.bbSqueeze && signal.text.includes('Squeeze')) return true;
+    }
+    
+    return false;
+}
+
+// Update Stock List
+function updateStockList() {
+    const totalStocks = stockData.size;
+    const filteredStocks = Array.from(stockData.values()).filter(matchesFilters);
+    
+    totalStocksEl.textContent = `${totalStocks} stocks analyzed`;
+    filteredStocksEl.textContent = `${filteredStocks.length} matching criteria`;
+    
+    if (totalStocks === 0) {
+        stockList.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-chart-bar"></i>
+                <h3>No stocks added yet</h3>
+                <p>Add stock symbols above or scan popular stocks to get started</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const stocksToShow = filteredStocks.length > 0 ? 
+        Array.from(stockData.entries()).filter(([symbol, analysis]) => matchesFilters(analysis)) :
+        Array.from(stockData.entries());
+    
+    stockList.innerHTML = stocksToShow.map(([symbol, analysis]) => 
+        createStockItemHTML(symbol, analysis)
+    ).join('');
+    
+    // Add click handlers for stock items
+    stockList.querySelectorAll('.stock-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const symbol = item.dataset.symbol;
+            showStockDetails(symbol);
+        });
+    });
+}
+
+// Create Stock Item HTML
+function createStockItemHTML(symbol, analysis) {
+    const priceChange = Math.random() * 4 - 2; // Random change for demo
+    const priceChangeClass = priceChange >= 0 ? 'price-positive' : 'price-negative';
+    const priceChangeIcon = priceChange >= 0 ? '▲' : '▼';
+    
+    return `
+        <div class="stock-item ${analysis.sentiment}" data-symbol="${symbol}">
+            <div class="stock-header">
+                <div class="stock-symbol">${symbol.replace('.SI', '')}</div>
+                <div class="stock-price ${priceChangeClass}">
+                    $${analysis.currentPrice.toFixed(2)}
+                    <small>${priceChangeIcon} ${Math.abs(priceChange).toFixed(2)}%</small>
+                </div>
+            </div>
+            
+            <div class="stock-indicators">
+                <div class="indicator">
+                    <div class="indicator-label">5-Day EMA</div>
+                    <div class="indicator-value">$${analysis.ema5.toFixed(2)}</div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">10-Day EMA</div>
+                    <div class="indicator-value">$${analysis.ema10.toFixed(2)}</div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">BB Upper</div>
+                    <div class="indicator-value">$${analysis.bbUpper.toFixed(2)}</div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">BB Lower</div>
+                    <div class="indicator-value">$${analysis.bbLower.toFixed(2)}</div>
+                </div>
+            </div>
+            
+            <div class="stock-signals">
+                ${analysis.signals.map(signal => 
+                    `<span class="signal ${signal.type}">${signal.text}</span>`
+                ).join('')}
+            </div>
+        </div>
+    `;
+}
+
+// Show Stock Details Modal
+function showStockDetails(symbol) {
+    const analysis = stockData.get(symbol);
+    if (!analysis) return;
+    
+    const modalStockName = document.getElementById('modal-stock-name');
+    modalStockName.textContent = `${symbol.replace('.SI', '')} - Stock Analysis`;
+    
+    // Update detail cards
+    document.getElementById('current-price').textContent = `$${analysis.currentPrice.toFixed(2)}`;
+    document.getElementById('ema-5').textContent = `$${analysis.ema5.toFixed(2)}`;
+    document.getElementById('ema-10').textContent = `$${analysis.ema10.toFixed(2)}`;
+    document.getElementById('bb-upper').textContent = `$${analysis.bbUpper.toFixed(2)}`;
+    document.getElementById('bb-lower').textContent = `$${analysis.bbLower.toFixed(2)}`;
+    document.getElementById('volume').textContent = formatVolume(analysis.volume);
+    
+    // Create chart
+    createStockChart(analysis.fullData);
+    
+    stockModal.style.display = 'flex';
+}
+
+// Create Stock Chart
+function createStockChart(data) {
+    const ctx = document.getElementById('stock-chart');
+    
+    if (stockChart) {
+        stockChart.destroy();
+    }
+    
+    const labels = data.prices.map((_, index) => `Day ${index + 1}`);
+    
+    stockChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Price',
+                    data: data.prices,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: '5-Day EMA',
+                    data: data.ema5,
+                    borderColor: '#10b981',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: '10-Day EMA',
+                    data: data.ema10,
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: 'BB Upper',
+                    data: data.upperBand,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'BB Lower',
+                    data: data.lowerBand,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    borderDash: [5, 5]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            }
+        }
+    });
+}
+
+// Close Modal
+function closeModal() {
+    stockModal.style.display = 'none';
+    if (stockChart) {
+        stockChart.destroy();
+        stockChart = null;
+    }
+}
+
+// Show/Hide Loading
+function showLoading(show) {
+    loadingIndicator.style.display = show ? 'flex' : 'none';
+}
+
+// Format Volume
+function formatVolume(volume) {
+    if (volume >= 1000000) {
+        return `${(volume / 1000000).toFixed(1)}M`;
+    } else if (volume >= 1000) {
+        return `${(volume / 1000).toFixed(1)}K`;
+    }
+    return volume.toString();
+}
+
+// Save Stocks to localStorage
+function saveStocks() {
+    const stocksArray = Array.from(stockData.entries()).map(([symbol, analysis]) => ({
+        symbol,
+        analysis: {
+            ...analysis,
+            fullData: undefined // Don't save full data to reduce storage
+        }
+    }));
+    localStorage.setItem('sgxStocks', JSON.stringify(stocksArray));
+}
+
+// Load Saved Stocks
+function loadSavedStocks() {
+    try {
+        const saved = localStorage.getItem('sgxStocks');
+        if (saved) {
+            const stocksArray = JSON.parse(saved);
+            stocksArray.forEach(({ symbol, analysis }) => {
+                // Regenerate full data for charts
+                const data = generateMockStockData(symbol);
+                const fullAnalysis = analyzeStock(data);
+                stockData.set(symbol, fullAnalysis);
+            });
+            updateStockList();
+        }
+    } catch (error) {
+        console.error('Error loading saved stocks:', error);
+    }
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Escape to close modal
+    if (e.key === 'Escape' && stockModal.style.display === 'flex') {
+        closeModal();
+    }
+    
+    // Enter to add stock when input is focused
+    if (e.key === 'Enter' && document.activeElement === stockSymbolInput) {
+        handleAddStock();
+    }
+});
+
+// Auto-refresh every 5 minutes
+setInterval(() => {
+    if (stockData.size > 0) {
+        console.log('Auto-refreshing stock data...');
+        handleRefreshAll();
+    }
+}, 5 * 60 * 1000);
+
+// Export functions for testing (if needed)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        calculateEMA,
+        calculateBollingerBands,
+        analyzeStock
+    };
+}
